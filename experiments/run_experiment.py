@@ -161,9 +161,10 @@ def run_benchmark(
     print(f"  • Balanced Accuracy Diff:      {delta_bal:+.2f}%")
     print("\nScientific Observation:")
     print("  The classical RBF kernel significantly outperformed the unoptimized quantum feature map.")
-    print("  The quantum ZZFeatureMap suffered from kernel concentration towards the majority class (Benign),")
-    print("  demonstrating that generic quantum phase interactions do not automatically provide quantum")
-    print("  advantage on continuous medical imaging tabular features without problem-tailored ansatz design.")
+    print("  The quantum model collapsed toward majority-class predictions (Benign), missing 39 of 42 malignant cases.")
+    print("  Empirical audit indicates this is primarily driven by continuous unscaled PCA components causing")
+    print("  rapid phase wrapping in the ZZ gates; quantum kernel concentration is a possible theoretical hypothesis")
+    print("  rather than an empirically proven sole cause in this setup.")
 
     # Structure complete results object
     timestamp_str = datetime.now(timezone.utc).isoformat()
@@ -242,7 +243,7 @@ def run_benchmark(
             "ready": True,
             "superiorModel": "Classical Baseline (RBF-SVC)",
             "balancedAccuracyAnalysis": f"Classical baseline achieved {bal_acc_c * 100:.2f}% balanced accuracy versus {bal_acc_q * 100:.2f}% for the quantum model (a differential of {delta_bal:+.2f}%).",
-            "errorAnalysis": f"The unoptimized ZZFeatureMap exhibited strong bias toward the majority class (Benign), misclassifying {cm_q[0][1]} of 42 malignant cases as benign. The classical RBF model misclassified only {cm_c[0][1]} malignant cases.",
+            "errorAnalysis": f"The unoptimized ZZFeatureMap exhibited strong bias toward the majority class (Benign), misclassifying {cm_q[0][1]} of 42 malignant cases as benign (false negatives). Rapid phase wrapping from continuous unscaled PCA inputs is the primary demonstrated factor; exponential kernel concentration is a possible theoretical hypothesis rather than a proven cause.",
             "computationalCostAnalysis": f"Classical inference required {runtime_classical:.4f}s compared to {runtime_quantum:.4f}s for quantum statevector kernel evaluations ({runtime_quantum / max(runtime_classical, 1e-6):.1f}x wall-clock overhead).",
             "fallbackMessage": "Insights generated strictly from verified local empirical benchmarks."
         }

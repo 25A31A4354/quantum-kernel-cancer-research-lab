@@ -190,27 +190,31 @@ export default function PerformanceVisualizations({ models }) {
                 </div>
               ) : (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', textAlign: 'center' }}>
-                  <div style={{ padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>TRUE NEGATIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#ecfdf5', borderRadius: '8px', border: '1px solid #a7f3d0' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#065f46', fontWeight: 700 }}>TRUE MALIGNANT (TP)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#047857', marginTop: '0.1rem' }}>Actual Malignant → Pred Malignant</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#065f46', marginTop: '0.3rem' }}>
                       {classical.confusionMatrix.matrix[0][0]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 600 }}>FALSE POSITIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 700 }}>MISSED CANCER (FN)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#b91c1c', marginTop: '0.1rem' }}>Actual Malignant → Pred Benign</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.3rem' }}>
                       {classical.confusionMatrix.matrix[0][1]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 600 }}>FALSE NEGATIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#fffbeb', borderRadius: '8px', border: '1px solid #fde68a' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#92400e', fontWeight: 700 }}>FALSE ALARM (FP)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#b45309', marginTop: '0.1rem' }}>Actual Benign → Pred Malignant</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#b45309', marginTop: '0.3rem' }}>
                       {classical.confusionMatrix.matrix[1][0]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>TRUE POSITIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 700 }}>TRUE BENIGN (TN)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#64748b', marginTop: '0.1rem' }}>Actual Benign → Pred Benign</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.3rem' }}>
                       {classical.confusionMatrix.matrix[1][1]}
                     </div>
                   </div>
@@ -245,27 +249,31 @@ export default function PerformanceVisualizations({ models }) {
                 </div>
               ) : (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', textAlign: 'center' }}>
-                  <div style={{ padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>TRUE NEGATIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#ecfdf5', borderRadius: '8px', border: '1px solid #a7f3d0' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#065f46', fontWeight: 700 }}>TRUE MALIGNANT (TP)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#047857', marginTop: '0.1rem' }}>Actual Malignant → Pred Malignant</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#065f46', marginTop: '0.3rem' }}>
                       {quantum.confusionMatrix.matrix[0][0]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 600 }}>FALSE POSITIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 700 }}>MISSED CANCER (FN)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#b91c1c', marginTop: '0.1rem' }}>Actual Malignant → Pred Benign</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.3rem' }}>
                       {quantum.confusionMatrix.matrix[0][1]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#991b1b', fontWeight: 600 }}>FALSE NEGATIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#dc2626', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#fffbeb', borderRadius: '8px', border: '1px solid #fde68a' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#92400e', fontWeight: 700 }}>FALSE ALARM (FP)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#b45309', marginTop: '0.1rem' }}>Actual Benign → Pred Malignant</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#b45309', marginTop: '0.3rem' }}>
                       {quantum.confusionMatrix.matrix[1][0]}
                     </div>
                   </div>
-                  <div style={{ padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>TRUE POSITIVES</div>
-                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.2rem' }}>
+                  <div style={{ padding: '0.9rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 700 }}>TRUE BENIGN (TN)</div>
+                    <div style={{ fontSize: '0.68rem', color: '#64748b', marginTop: '0.1rem' }}>Actual Benign → Pred Benign</div>
+                    <div className="mono tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-navy)', marginTop: '0.3rem' }}>
                       {quantum.confusionMatrix.matrix[1][1]}
                     </div>
                   </div>

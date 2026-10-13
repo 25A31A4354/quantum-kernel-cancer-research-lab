@@ -69,9 +69,10 @@ To prevent data leakage and ensure an exact, apples-to-apples comparison:
 ### Critical Scientific Insights:
 1. **Absence of Quantum Advantage on Continuous Tabular Data:**
    * The classical RBF kernel achieved 95.6% accuracy, while the generic unoptimized quantum feature map achieved 57.9%.
-2. **Kernel Concentration & Class Collapse:**
-   * The quantum kernel suffered from severe class collapse: it predicted the majority class (Benign) in 102 out of 114 test cases, missing 39 of 42 malignant cases.
-   * This confirms widely documented quantum machine learning theory (e.g., Huang et al., 2021; Thanasilp et al., 2022): generic $ZZ$-feature maps can induce exponential concentration of measure, failing to capture subtle Euclidean boundaries without problem-tailored ansatz engineering.
+2. **Class Collapse & Possible Explanations:**
+   * The quantum kernel suffered from severe class collapse: it predicted the majority class (Benign) in 102 out of 114 test cases, missing 39 of 42 malignant cases (false negatives).
+   * Empirical audit revealed that feeding continuous unscaled PCA components into periodic $ZZ$-rotation gates caused rapid phase wrapping and state orthogonality ($K_{ij} \approx 0.019$).
+   * While quantum machine learning theory documents exponential concentration in expressive ansatzes, in this setup phase wrapping is the primary demonstrated limitation; exponential kernel concentration is a possible contributing hypothesis rather than an empirically proven cause.
 3. **Simulation vs. Physical Quantum Hardware:**
    * This local experiment ran on a noiseless statevector simulator. Physical noisy intermediate-scale quantum (NISQ) hardware would introduce gate infidelity, thermal relaxation ($T_1$), and dephasing ($T_2$), requiring robust error mitigation.
 
