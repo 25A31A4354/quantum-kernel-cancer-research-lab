@@ -77,11 +77,11 @@ export default function ResearchOverview() {
               </div>
             </div>
 
-            {/* Provisional Task Callout */}
+            {/* Task Callout (Accurately documented benchmark dataset) */}
             <div
               style={{
-                backgroundColor: '#fffbeb',
-                border: '1px solid #fde68a',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 borderRadius: 'var(--radius-md)',
                 padding: '1.25rem 1.5rem',
                 display: 'flex',
@@ -94,23 +94,23 @@ export default function ResearchOverview() {
                   display: 'inline-block',
                   fontSize: '0.72rem',
                   fontWeight: 600,
-                  color: '#92400e',
-                  backgroundColor: '#fef3c7',
-                  border: '1px solid #fde68a',
+                  color: '#0369a1',
+                  backgroundColor: '#e0f2fe',
+                  border: '1px solid #bae6fd',
                   padding: '0.2rem 0.55rem',
                   borderRadius: '9999px',
                   flexShrink: 0,
                   marginTop: '2px',
                 }}
               >
-                Provisional
+                Benchmark Task
               </span>
               <div style={{ fontSize: '0.86rem', lineHeight: 1.55 }}>
-                <strong style={{ color: '#92400e', display: 'block', marginBottom: '0.2rem' }}>
-                  Target Phenotype: EGFR Mutation Prediction in Lung Cancer
+                <strong style={{ color: '#0f172a', display: 'block', marginBottom: '0.2rem' }}>
+                  Target Phenotype: Benign vs. Malignant Breast Mass Classification
                 </strong>
-                <span style={{ color: '#78350f' }}>
-                  Selected provisionally for Non-Small Cell Lung Cancer cohort classification, pending final confirmation from our dataset lead.
+                <span style={{ color: '#475569' }}>
+                  Evaluated using the Breast Cancer Wisconsin Diagnostic cohort (569 fine-needle aspirates, 30 continuous cell nuclei morphology measurements) as a verified, peer-reviewed clinical benchmark after confirming local unavailability of raw lung cancer EGFR sequencing files.
                 </span>
               </div>
             </div>

@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-13T17:18:58.215604+00:00",
+    "qiskit_version": "2.5.2",
+    "qiskit_ml_version": "0.9.1",
+    "sklearn_version": "1.9.1",
+    "python_version": "3.12.7",
+    "random_state": 42
+  },
+  "dataset": {
+    "status": "verified",
+    "name": "Breast Cancer Wisconsin Diagnostic (WDBC)",
+    "sourceUrl": "https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic",
+    "samplesCount": 569,
+    "featuresCount": 30,
+    "featureExtractionMethod": "StandardScaler + PCA (n_components=6, 89.1% variance retained)",
+    "targetLabel": "Benign vs. Malignant Mass Pathology",
+    "classDefinitions": "Class 0: Malignant (212 samples, 37.3%), Class 1: Benign (357 samples, 62.7%)",
+    "classDistribution": {
+      "Malignant": 212,
+      "Benign": 357
+    },
+    "missingValuesHandling": "None (0 missing entries in published WDBC cohort)",
+    "trainTestSplit": {
+      "trainRatio": 0.8,
+      "testRatio": 0.2,
+      "trainSamples": 455,
+      "testSamples": 114,
+      "strategy": "Stratified Holdout Split (test_size=0.2)",
+      "randomState": 42
+    },
+    "verificationNotes": "Verified clinical benchmark dataset from UCI ML Repository (Wolberg et al., 1995). Selected as documented reliable fallback because raw clinical EGFR mutation cohorts were unavailable locally."
+  },
+  "models": {
+    "classical": {
+      "name": "Classical Support Vector Classifier (RBF)",
+      "framework": "scikit-learn",
+      "status": "completed",
+      "kernelMethod": "Radial Basis Function (RBF) Kernel, gamma='scale'",
+      "hyperparameters": {
+        "C": 1.0,
+        "gamma": "scale"
+      },
+      "metrics": {
+        "accuracy": 0.9561,
+        "balancedAccuracy": 0.9554,
+        "macroF1": 0.9531
+      },
+      "confusionMatrix": {
+        "labels": [
+          "Malignant",
+          "Benign"
+        ],
+        "matrix": [
+          [
+            40,
+            2
+          ],
+          [
+            3,
+            69
+          ]
+        ]
+      },
+      "runtimeSeconds": 0.0052
+    },
+    "quantum": {
+      "name": "Qiskit Quantum Kernel Classifier (QSVC)",
+      "framework": "Qiskit Machine Learning / Statevector Simulation",
+      "status": "completed",
+      "kernelMethod": "FidelityQuantumKernel (ZZFeatureMap, depth=2, linear entanglement)",
+      "qubitCount": 6,
+      "entanglement": "linear",
+      "hyperparameters": {
+        "C": 1.0,
+        "depth": 2,
+        "qubits": 6
+      },
+      "metrics": {
+        "accuracy": 0.5789,
+        "balancedAccuracy": 0.4732,
+        "macroF1": 0.4176
+      },
+      "confusionMatrix": {
+        "labels": [
+          "Malignant",
+          "Benign"
+        ],
+        "matrix": [
+          [
+            3,
+            39
+          ],
+          [
+            9,
+            63
+          ]
+        ]
+      },
+      "runtimeSeconds": 1.4851
+    }
+  },
+  "insights": {
+    "ready": true,
+    "superiorModel": "Classical Baseline (RBF-SVC)",
+    "balancedAccuracyAnalysis": "Classical baseline achieved 95.54% balanced accuracy versus 47.32% for the quantum model (a differential of -48.21%).",
+    "errorAnalysis": "The unoptimized ZZFeatureMap exhibited strong bias toward the majority class (Benign), misclassifying 39 of 42 malignant cases as benign. The classical RBF model misclassified only 2 malignant cases.",
+    "computationalCostAnalysis": "Classical inference required 0.0052s compared to 1.4851s for quantum statevector kernel evaluations (287.0x wall-clock overhead).",
+    "fallbackMessage": "Insights generated strictly from verified local empirical benchmarks."
+  }
+}

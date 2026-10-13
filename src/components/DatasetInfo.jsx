@@ -24,8 +24,11 @@ export default function DatasetInfo({ dataset }) {
             </p>
           </div>
 
-          <span className="status-pill pill-pending">
-            {isPending ? 'Pending Dataset Verification' : 'Verified Cohort'}
+          <span
+            className={`status-pill ${isPending ? 'pill-pending' : ''}`}
+            style={!isPending ? { backgroundColor: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0' } : {}}
+          >
+            {isPending ? 'Pending Dataset Verification' : 'Verified Clinical Cohort'}
           </span>
         </div>
 
@@ -121,7 +124,13 @@ export default function DatasetInfo({ dataset }) {
 
             <div className="spec-kv-row">
               <span className="spec-kv-label">Class Distribution</span>
-              {renderValue(dataset?.classDistribution ? JSON.stringify(dataset.classDistribution) : null)}
+              {renderValue(
+                dataset?.classDistribution
+                  ? Object.entries(dataset.classDistribution)
+                      .map(([k, v]) => `${k}: ${v}`)
+                      .join('  •  ')
+                  : null
+              )}
             </div>
           </div>
 

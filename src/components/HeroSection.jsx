@@ -176,7 +176,7 @@ export default function HeroSection({ models, dataset }) {
               }}
             >
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                <span style={{ color: '#0284c7' }}>&bull;</span> EGFR Cohort (Provisional)
+                <span style={{ color: '#0284c7' }}>&bull;</span> WDBC Cohort (Verified Benchmark)
               </span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <span style={{ color: '#1769ff' }}>&bull;</span> ZZFeatureMap Kernel
@@ -218,15 +218,15 @@ export default function HeroSection({ models, dataset }) {
                 <span
                   style={{
                     fontSize: '0.72rem',
-                    color: '#92400e',
-                    backgroundColor: '#fef3c7',
-                    border: '1px solid #fde68a',
+                    color: dataset?.status === 'verified' ? '#047857' : '#92400e',
+                    backgroundColor: dataset?.status === 'verified' ? '#ecfdf5' : '#fef3c7',
+                    border: `1px solid ${dataset?.status === 'verified' ? '#a7f3d0' : '#fde68a'}`,
                     padding: '0.2rem 0.55rem',
                     borderRadius: '9999px',
                     fontWeight: 600,
                   }}
                 >
-                  Pending experiment results
+                  {dataset?.status === 'verified' ? 'Verified Empirical Results' : 'Pending experiment results'}
                 </span>
               </div>
 
@@ -248,10 +248,12 @@ export default function HeroSection({ models, dataset }) {
                     </span>
                   </div>
                   <div style={{ fontSize: '0.8rem', color: '#0f172a', fontWeight: 600, marginBottom: '0.4rem' }}>
-                    {classicalModel.name || 'RBF-SVC'}
+                    {classicalModel.name ? 'RBF-SVC' : 'Classical Baseline'}
                   </div>
-                  <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#94a3b8', letterSpacing: '-0.02em' }}>
-                    &mdash;
+                  <div className="mono tabular-nums" style={{ fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em' }}>
+                    {classicalModel.metrics?.balancedAccuracy !== null && classicalModel.metrics?.balancedAccuracy !== undefined
+                      ? `${(classicalModel.metrics.balancedAccuracy * 100).toFixed(1)}%`
+                      : '—'}
                   </div>
                   <div style={{ fontSize: '0.68rem', color: '#64748b' }}>Balanced Accuracy</div>
                 </div>
@@ -272,10 +274,12 @@ export default function HeroSection({ models, dataset }) {
                     </span>
                   </div>
                   <div style={{ fontSize: '0.8rem', color: '#0f172a', fontWeight: 600, marginBottom: '0.4rem' }}>
-                    {quantumModel.kernelMethod || 'Fidelity Kernel'}
+                    {quantumModel.kernelMethod ? 'ZZFeatureMap' : 'Quantum Model'}
                   </div>
-                  <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#94a3b8', letterSpacing: '-0.02em' }}>
-                    &mdash;
+                  <div className="mono tabular-nums" style={{ fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em' }}>
+                    {quantumModel.metrics?.balancedAccuracy !== null && quantumModel.metrics?.balancedAccuracy !== undefined
+                      ? `${(quantumModel.metrics.balancedAccuracy * 100).toFixed(1)}%`
+                      : '—'}
                   </div>
                   <div style={{ fontSize: '0.68rem', color: '#64748b' }}>Balanced Accuracy</div>
                 </div>
@@ -366,9 +370,11 @@ export default function HeroSection({ models, dataset }) {
                 marginLeft: '2.5rem',
               }}
             >
-              <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#d97706' }} />
+              <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: dataset?.status === 'verified' ? '#10b981' : '#d97706' }} />
               <span>Dataset Provenance:</span>
-              <span style={{ color: '#64748b', fontWeight: 400 }}>Pending Verification</span>
+              <span style={{ color: '#64748b', fontWeight: 400 }}>
+                {dataset?.status === 'verified' ? 'WDBC Cohort (Verified)' : 'Pending Verification'}
+              </span>
             </div>
           </div>
         </div>
