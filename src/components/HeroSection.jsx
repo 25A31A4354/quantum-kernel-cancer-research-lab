@@ -1,6 +1,15 @@
 import React from 'react';
 
-export default function HeroSection({ models, dataset }) {
+export default function HeroSection({
+  models,
+  dataset,
+  isRunning,
+  onRunExperiment,
+  runFeedback,
+  isLiveRun,
+  apiOnline,
+  lastUpdated,
+}) {
   const classicalModel = models?.classical || {};
   const quantumModel = models?.quantum || {};
 
@@ -127,27 +136,57 @@ export default function HeroSection({ models, dataset }) {
 
             {/* Primary & Secondary Action CTAs */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
-              <a
-                href="#comparison"
+              <button
+                type="button"
+                onClick={onRunExperiment}
+                disabled={isRunning}
                 className="btn-primary"
                 style={{
-                  backgroundColor: '#0f172a',
+                  backgroundColor: isRunning ? '#334155' : '#0f172a',
                   color: '#ffffff',
                   padding: '0.85rem 1.75rem',
                   fontSize: '0.94rem',
                   borderRadius: '9999px',
                   fontWeight: 600,
                   boxShadow: '0 4px 14px rgba(15, 23, 42, 0.18)',
+                  border: 'none',
+                  cursor: isRunning ? 'not-allowed' : 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  transition: 'all 0.2s ease',
                 }}
               >
-                Explore the experiment
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
+                {isRunning ? (
+                  <>
+                    <svg
+                      style={{
+                        animation: 'spin 1s linear infinite',
+                        width: '18px',
+                        height: '18px',
+                      }}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                    >
+                      <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+                      <path d="M12 2a10 10 0 0 1 10 10" />
+                    </svg>
+                    <span>Running Live Experiment...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" />
+                    </svg>
+                    <span>Run Live Experiment</span>
+                  </>
+                )}
+              </button>
 
               <a
-                href="#overview"
+                href="#comparison"
                 className="btn-secondary"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -157,11 +196,61 @@ export default function HeroSection({ models, dataset }) {
                   fontSize: '0.94rem',
                   borderRadius: '9999px',
                   fontWeight: 600,
+                  textDecoration: 'none',
                 }}
               >
-                View methodology
+                View Benchmark
               </a>
             </div>
+
+            {/* Run Feedback Alert Banner */}
+            {runFeedback && (
+              <div
+                style={{
+                  marginTop: '1.25rem',
+                  padding: '0.85rem 1rem',
+                  borderRadius: '10px',
+                  fontSize: '0.86rem',
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.65rem',
+                  backgroundColor:
+                    runFeedback.type === 'success'
+                      ? '#ecfdf5'
+                      : runFeedback.type === 'error'
+                      ? '#fef2f2'
+                      : '#eff6ff',
+                  border: `1px solid ${
+                    runFeedback.type === 'success'
+                      ? '#a7f3d0'
+                      : runFeedback.type === 'error'
+                      ? '#fecaca'
+                      : '#bfdbfe'
+                  }`,
+                  color:
+                    runFeedback.type === 'success'
+                      ? '#065f46'
+                      : runFeedback.type === 'error'
+                      ? '#991b1b'
+                      : '#1e40af',
+                }}
+              >
+                <span style={{ fontSize: '1.05rem', flexShrink: 0, marginTop: '-2px' }}>
+                  {runFeedback.type === 'success' ? '✓' : runFeedback.type === 'error' ? '⚠' : 'ℹ'}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <strong>
+                    {runFeedback.type === 'success'
+                      ? 'Live Run Completed: '
+                      : runFeedback.type === 'error'
+                      ? 'Execution Alert: '
+                      : 'Experiment In Progress: '}
+                  </strong>
+                  {runFeedback.message}
+                </div>
+              </div>
+            )}
 
             {/* Technical Context Tags */}
             <div
@@ -218,15 +307,15 @@ export default function HeroSection({ models, dataset }) {
                 <span
                   style={{
                     fontSize: '0.72rem',
-                    color: dataset?.status === 'verified' ? '#047857' : '#92400e',
-                    backgroundColor: dataset?.status === 'verified' ? '#ecfdf5' : '#fef3c7',
-                    border: `1px solid ${dataset?.status === 'verified' ? '#a7f3d0' : '#fde68a'}`,
-                    padding: '0.2rem 0.55rem',
+                    color: isLiveRun ? '#1e40af' : '#047857',
+                    backgroundColor: isLiveRun ? '#eff6ff' : '#ecfdf5',
+                    border: `1px solid ${isLiveRun ? '#bfdbfe' : '#a7f3d0'}`,
+                    padding: '0.2rem 0.6rem',
                     borderRadius: '9999px',
                     fontWeight: 600,
                   }}
                 >
-                  {dataset?.status === 'verified' ? 'Verified Empirical Results' : 'Pending experiment results'}
+                  {isLiveRun ? '● Verified Live Run' : 'Saved Baseline Run'}
                 </span>
               </div>
 

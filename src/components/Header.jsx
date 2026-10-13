@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QuantumLogo from './QuantumLogo';
 
-export default function Header() {
+export default function Header({ apiOnline, isRunning, onRunExperiment }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -117,20 +117,27 @@ export default function Header() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
+              gap: '0.45rem',
               fontSize: '0.72rem',
-              fontWeight: 500,
-              padding: '0.2rem 0.65rem',
+              fontWeight: 600,
+              padding: '0.22rem 0.7rem',
               borderRadius: '9999px',
-              backgroundColor: '#f1f5f9',
-              color: '#475569',
-              border: '1px solid #e2e8f0',
+              backgroundColor: apiOnline ? '#ecfdf5' : '#f8fafc',
+              color: apiOnline ? '#047857' : '#64748b',
+              border: `1px solid ${apiOnline ? '#a7f3d0' : '#e2e8f0'}`,
               letterSpacing: '0.01em',
               whiteSpace: 'nowrap',
             }}
           >
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#0284c7' }} />
-            Prototype
+            <span
+              style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: apiOnline ? '#10b981' : (apiOnline === false ? '#f59e0b' : '#94a3b8'),
+              }}
+            />
+            {apiOnline ? 'Backend Online' : (apiOnline === false ? 'Backend Offline' : 'Checking Backend')}
           </span>
 
           <button

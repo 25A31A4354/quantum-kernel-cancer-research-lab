@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ModelComparison({ models }) {
+export default function ModelComparison({ models, isRunning, onRunExperiment, isLiveRun }) {
   const classical = models?.classical;
   const quantum = models?.quantum;
 
@@ -36,13 +36,61 @@ export default function ModelComparison({ models }) {
     <section id="comparison" className="section-wrapper section-white scroll-anchor">
       <div className="container">
         {/* Header */}
-        <div className="section-header">
-          <div className="eyebrow">Controlled Benchmark</div>
-          <h2 className="section-title">Classical Baseline vs. Quantum Kernel Model</h2>
-          <p className="section-subtitle">
-            Side-by-side empirical benchmark evaluated on strictly identical cross-validation partitions.
-            Neither pipeline receives preferential feature pre-selection or hyperparameter tuning.
-          </p>
+        <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem' }}>
+          <div>
+            <div className="eyebrow">Controlled Benchmark</div>
+            <h2 className="section-title">Classical Baseline vs. Quantum Kernel Model</h2>
+            <p className="section-subtitle">
+              Side-by-side empirical benchmark evaluated on strictly identical cross-validation partitions.
+              Neither pipeline receives preferential feature pre-selection or hyperparameter tuning.
+            </p>
+          </div>
+
+          {onRunExperiment && (
+            <button
+              type="button"
+              onClick={onRunExperiment}
+              disabled={isRunning}
+              style={{
+                backgroundColor: isRunning ? '#64748b' : '#0f172a',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '9999px',
+                padding: '0.65rem 1.4rem',
+                fontSize: '0.86rem',
+                fontWeight: 600,
+                cursor: isRunning ? 'not-allowed' : 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: 'var(--shadow-sm)',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              {isRunning ? (
+                <>
+                  <svg
+                    style={{ animation: 'spin 1s linear infinite', width: '15px', height: '15px' }}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+                    <path d="M12 2a10 10 0 0 1 10 10" />
+                  </svg>
+                  <span>Running Experiment...</span>
+                </>
+              ) : (
+                <>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" />
+                  </svg>
+                  <span>Run Live Experiment</span>
+                </>
+              )}
+            </button>
+          )}
         </div>
 
         {/* 2-Column Model Comparison Cards */}
