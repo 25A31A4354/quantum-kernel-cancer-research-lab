@@ -1,0 +1,303 @@
+/* Quantum Kernel Cancer Research Platform Theme */
+/* Inspired by Stripe's precision composition, fluid light gradients, and crisp typography */
+
+:root {
+  /* Restrained Core Palette */
+  --color-navy: #0f172a;
+  --color-navy-dark: #0a0f1d;
+  --color-blue: #1769ff;
+  --color-cyan: #0284c7;
+  --color-cyan-light: #38bdf8;
+  --color-slate: #475569;
+  --color-slate-light: #64748b;
+  --color-slate-muted: #94a3b8;
+  --color-white: #ffffff;
+  
+  --bg-light: #f8fafc;
+  --bg-subtle: #f1f5f9;
+  --border-light: #e2e8f0;
+  --border-card: #e8edf3;
+
+  /* Restrained Status System */
+  --status-pending: #92400e;
+  --status-pending-bg: #fef3c7;
+  --status-pending-border: #fde68a;
+  --status-active: #1769ff;
+  --status-success: #059669;
+
+  /* Typography */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+  /* Layered Soft Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-card: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  --shadow-floating: 0 20px 45px -10px rgba(15, 23, 42, 0.1), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
+  --shadow-floating-lg: 0 28px 56px -12px rgba(15, 23, 42, 0.14), 0 12px 24px -6px rgba(15, 23, 42, 0.06);
+  --shadow-navy: 0 24px 48px -12px rgba(10, 15, 29, 0.4);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-light);
+  color: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-light);
+  color: var(--color-navy);
+  overflow-x: hidden;
+}
+
+/* Tabular figures for numbers and data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  letter-spacing: -0.01em;
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+.section-wrapper {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-white {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-light {
+  background-color: var(--bg-light);
+}
+
+.section-header {
+  margin-bottom: 2.75rem;
+}
+
+/* Understated Section Eyebrow */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-blue);
+  margin-bottom: 0.55rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-navy);
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--color-slate);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* Elevated White Card */
+.stripe-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.stripe-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-floating);
+}
+
+/* Selective Deep Navy Technical Panel (Quantum theory & circuits) */
+.navy-tech-panel {
+  background-color: var(--color-navy);
+  color: #f8fafc;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-navy);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Restrained Status Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+}
+
+.pill-prototype {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.pill-pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending);
+  border: 1px solid var(--status-pending-border);
+}
+
+.pill-quantum {
+  background: rgba(23, 105, 255, 0.07);
+  color: var(--color-blue);
+  border: 1px solid rgba(23, 105, 255, 0.2);
+}
+
+.pill-sky {
+  background: rgba(2, 132, 199, 0.07);
+  color: var(--color-cyan);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+/* Key-Value Spec Rows */
+.spec-kv-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+
+.spec-kv-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.spec-kv-label {
+  color: var(--color-slate);
+  font-weight: 500;
+}
+
+.spec-kv-value {
+  color: var(--color-navy);
+  font-weight: 600;
+  text-align: right;
+}
+
+.spec-kv-pending {
+  color: var(--color-slate-muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  padding: 0.75rem 1.45rem;
+  border-radius: 9999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.24);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--color-navy);
+  padding: 0.75rem 1.45rem;
+  border-radius: 9999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #ffffff;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+/* Empty State */
+.stripe-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3.25rem 1.5rem;
+  background-color: #fafbfc;
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.scroll-anchor {
+  scroll-margin-top: 5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .section-wrapper {
+    padding: 3.5rem 0;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
