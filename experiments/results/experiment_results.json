@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-10-13T17:49:39.611715+00:00",
+    "timestamp": "2026-10-13T17:57:15.323693+00:00",
     "qiskit_version": "2.5.2",
     "qiskit_ml_version": "0.9.1",
     "sklearn_version": "1.9.1",
@@ -62,7 +62,7 @@
           ]
         ]
       },
-      "runtimeSeconds": 0.0053
+      "runtimeSeconds": 0.005
     },
     "quantum": {
       "name": "Qiskit Quantum Kernel Classifier (QSVC)",
@@ -97,7 +97,7 @@
           ]
         ]
       },
-      "runtimeSeconds": 1.5758
+      "runtimeSeconds": 1.5679
     }
   },
   "insights": {
@@ -105,7 +105,7 @@
     "superiorModel": "Classical Baseline (RBF-SVC)",
     "balancedAccuracyAnalysis": "Classical baseline achieved 95.54% balanced accuracy versus 47.32% for the quantum model (a differential of -48.21%).",
     "errorAnalysis": "The unoptimized ZZFeatureMap exhibited strong bias toward the majority class (Benign), misclassifying 39 of 42 malignant cases as benign (false negatives). Rapid phase wrapping from continuous unscaled PCA inputs is the primary demonstrated factor; exponential kernel concentration is a possible theoretical hypothesis rather than a proven cause.",
-    "computationalCostAnalysis": "Classical inference required 0.0053s compared to 1.5758s for quantum statevector kernel evaluations (297.7x wall-clock overhead).",
+    "computationalCostAnalysis": "Classical inference required 0.0050s compared to 1.5679s for quantum statevector kernel evaluations (311.2x wall-clock overhead).",
     "fallbackMessage": "Insights generated strictly from verified local empirical benchmarks."
   }
 }

@@ -137,7 +137,7 @@ export default function Header({ apiOnline, isRunning, onRunExperiment }) {
                 backgroundColor: apiOnline ? '#10b981' : (apiOnline === false ? '#f59e0b' : '#94a3b8'),
               }}
             />
-            {apiOnline ? 'Backend Online' : (apiOnline === false ? 'Backend Offline' : 'Checking Backend')}
+            {apiOnline ? 'Backend Online' : (apiOnline === false ? 'Local Backend (Offline)' : 'Checking Backend')}
           </span>
 
           <button

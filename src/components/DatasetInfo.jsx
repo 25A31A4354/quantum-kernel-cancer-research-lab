@@ -59,17 +59,33 @@ export default function DatasetInfo({ dataset }) {
               {renderValue(dataset?.name)}
             </div>
 
-            <div className="spec-kv-row">
-              <span className="spec-kv-label">Source URL / Accession</span>
+            <div className="spec-kv-row" style={{ gap: '1rem' }}>
+              <span className="spec-kv-label" style={{ flexShrink: 0 }}>Source URL / Accession</span>
               {dataset?.sourceUrl ? (
-                <a
-                  href={dataset.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--color-blue)', textDecoration: 'none', fontWeight: 600 }}
+                <span
+                  className="spec-kv-value"
+                  style={{
+                    minWidth: 0,
+                    overflowWrap: 'anywhere',
+                    wordBreak: 'break-word',
+                    textAlign: 'right',
+                  }}
                 >
-                  {dataset.sourceUrl}
-                </a>
+                  <a
+                    href={dataset.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: 'var(--color-blue)',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      overflowWrap: 'anywhere',
+                      wordBreak: 'break-word',
+                    }}
+                  >
+                    {dataset.sourceUrl}
+                  </a>
+                </span>
               ) : (
                 renderValue(null)
               )}

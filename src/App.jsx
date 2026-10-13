@@ -16,9 +16,17 @@ export default function App() {
   const [runFeedback, setRunFeedback] = useState(null);
   const [apiOnline, setApiOnline] = useState(null);
 
-  // Check if local API is accessible on initial mount
+  const isLocal = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+  // Check if local API is accessible on initial mount (only on localhost)
   useEffect(() => {
     let isMounted = true;
+    if (!isLocal) {
+      setApiOnline(false);
+      return;
+    }
+
     const checkApi = async () => {
       try {
         const res = await fetch('http://127.0.0.1:8000/api/status');
@@ -37,10 +45,19 @@ export default function App() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [isLocal]);
 
   const handleRunLiveExperiment = async () => {
     if (isRunning) return;
+
+    if (!isLocal) {
+      setRunFeedback({
+        type: 'info',
+        message: 'Live Qiskit quantum kernel execution runs via the local Python/FastAPI backend (localhost:8000). The deployed dashboard displays verified benchmark results. To execute live quantum circuits, clone the repository and run ./start_demo.sh locally.',
+      });
+      return;
+    }
+
     setIsRunning(true);
     setRunFeedback({
       type: 'info',

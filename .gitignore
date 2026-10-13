@@ -29,3 +29,9 @@ venv/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Scratch & Vercel
+start.txt
+.vercel/
+
+.vercel
